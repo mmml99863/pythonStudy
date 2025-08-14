@@ -1,3 +1,5 @@
+import copy
+
 """
 列表:可以存放任何类型的数据，不用所有数据类型相同
 """
@@ -45,7 +47,7 @@ def func1():
 """列表的增"""
 def list_add():
     heros=['钢铁侠', '绿巨人']
-    heros.append('黑寡妇')#append每次只能添加一个
+    heros.append('黑寡妇')#append每次只能添加一个到尾部
     print(heros)
     heros.extend(['灭霸', '雷神', '鹰眼'])#extemd里的参数必须是可迭代对象，且只能增加到尾部
     print(heros)
@@ -106,10 +108,101 @@ def list_revise():
 def list_add_and_mul():
     nums1 = [1, 2, 3, 4, 5]
     nums2 = [6, 7, 8, 9, 10]
+    print(nums1 + nums2)
+    print(nums1 * 3) #列表中元素复制为原来的3倍，即[1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
+    matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9],
+              [1,2,3,4,5,6,7,8,9],
+              nums1]    #二维矩阵
+    print(matrix)
+    """
+    1 2 3 
+    4 5 6 
+    7 8 9 
+    1 2 3 4 5 6 7 8 9 
+    1 2 3 4 5 
+    """
+    for i in matrix:
+        for j in i:
+            print(j, end=' ')
+        print()
+    print(matrix[0][1]) # 0行1列 = 2
+    a = [0]*3
+    print(a)    # 1维
+    for i in range(3):
+        a[i] = [0]*3 #2维
+    x = [[1, 2, 3]] * 3  # 三次引用[[1, 2, 3], [1, 2, 3], [1, 2, 3]]
+    print(a)
+
+"""is同一运算符：判断是否指向内存中的同一存储位置，str是常量，可同时存储"""
+def func_is():
+    X = "huang ji"
+    Y = "huang ji"
+    print(X is Y)   #true
+    X = [1, 2, 3]
+    Y = [1, 2, 3]
+    print(X is Y)   #False
+    a = [[0]*3]*3       #引用，不是copy，一改全改
+    b = [0]*3
+    for i in range(3):
+        b[i] = [0]*3
+    print(a)
+    print(b)
+    print(a is b)   #False
+    print(b[0] is b[1])     #False
+    print(a[0] is a[1])      #True
+
+"""变量引用数值"""
+def func2():
+    x = [1, 2, 3]
+    y = x #引用
+    print(x is y)   #true
+    x[1] = 0
+    print(y)    #[1, 0, 3]
+
+"""拷贝"""
+def func_copy():
+    """浅copy"""
+    x = [1, 2, 3]
+    y = x.copy()    #浅copy，只copy对象
+    print(x is y)   #False
+    x[1] = 0
+    print(y)    #[1, 2, 3]
+    z = x[:]
+    print(x is z)   #False
+    x[1] = 4
+    print(z)    #[1, 0, 3]
+
+    x = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    print(x)
+    y = x.copy()    #仅copy外层，内里任是引用，即相当于一个文件夹里全是快捷方式
+    print("hello")
+    print(x[1] is y[1])   #True，证明是引用
+    x[1][1] = 0
+    print(x)    #[[1, 2, 3], [4, 0, 6], [7, 8, 9]]
+    print(y)    #[[1, 2, 3], [4, 0, 6], [7, 8, 9]]
+    """深copy"""
+    print()
+    x = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    y = copy.copy(x)    #浅copy
+    print(x is y)   #False
+    x[1][1] = 0
+    print(x)    #[[1, 2, 3], [4, 0, 6], [7, 8, 9]]
+    print(y)    #[[1, 2, 3], [4, 0, 6], [7, 8, 9]]
+    x = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    y = copy.deepcopy(x)    #深度copy，将对象与其子对象...都copy
+    print(x is y)   #False
+    x[1][1] = 0
+    print(x)    #[[1, 2, 3], [4, 0, 6], [7, 8, 9]]
+    print(y)    #[[1, 2, 3], [4, 0, 6], [7, 8, 9]]
+
 
 
 def main():
-    list_revise()
+    func_copy()
+    #func2()
+    #func_is()
+    #list_add_and_mul()
+    #list_revise()
     #list_del()
     #list_add()
 
