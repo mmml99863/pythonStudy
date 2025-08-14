@@ -195,10 +195,76 @@ def func_copy():
     print(x)    #[[1, 2, 3], [4, 0, 6], [7, 8, 9]]
     print(y)    #[[1, 2, 3], [4, 0, 6], [7, 8, 9]]
 
+"""列表推导式:效率比循环效率高1倍"""
+def func3():
+    x = [1, 2, 3, 4, 5]
+    for i in range(len(x)):
+        x[i] = x[i]*2
+    print(x)
+    x = [1, 2, 3, 4, 5]
+    """[表达式 for 表达式执行次数 in iterable]"""
+    y = [x[i]*2 for i in range(len(x))]
+    print(y)
+    z = [i+1 for i in range(0, 10)]   #[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    print(z)
+    m = []
+    for i in range(0, 10):
+        m.append(i+1)   #append无需列表的考虑长度问题
+    print(m)
+    n = [item*2 for item in 'hello world!'] #['hh', 'ee', 'll', 'll', 'oo', '  ', 'ww', 'oo', 'rr', 'll', 'dd', '!!']
+    print(n)
+    u = [ord(item) for item in 'hello world!'] #ord()单字符转码，[104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100, 33]
+    print(u)
+    matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    col2 = [matrix[x][1] for x in range(len(matrix))]   #[2, 5, 8]
+    print(col2)
+    col3 = [row[1] for row in matrix]   #[2, 5, 8]
+    print(col3)
+    """输出正斜对角的"""
+    col4 = [matrix[i][i] for i in range(len(matrix))]
+    print(col4)
+    """输出负斜对角"""
+    length = len(matrix)
+    col5 = [matrix[i][-i-1] for i in range(length)]   #[3, 5, 7]或matrix[i][length-i-1]
+    print(col5)
 
+"""列表推导式:[表达式 for target in iterable if 条件]"""
+def func4():
+     a = [[0]*3 for i in range(3)]  #表示[0]*3 执行三次，即[[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+     print(a)
+     a[1][1] = 1
+     print(a)   #[[0, 0, 0], [0, 1, 0], [0, 0, 0]]
+     b = [i for i in range(10) if i%2==0]
+     print(b)#[0, 2, 4, 6, 8]
+     """筛选h开头的单词"""
+     words = ['hello', 'world', 'python', 'java', 'c#']
+     ans = [item for item in words if item[0]=='h']
+     print(ans)
+
+"""列表推导式:[表达式 for target1 in iterable1 for target2 in iterable2...]"""
+def func5():
+    """二维降为一维"""
+    matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    row = [i for item in matrix for i in item]
+    print(row)  #[1, 2, 3, 4, 5, 6, 7, 8, 9]
+    """['hw', 'ho', 'hr', 'hl', 'hd', 'ew', 'eo', 'er', 'el',
+     'ed', 'lw', 'lo', 'lr', 'll', 'ld', 'lw', 'lo', 'lr', 'll', 'ld', 'ow', 'oo', 'or', 'ol', 'od']"""
+    row2 = [x+y for x in 'hello' for y in 'world']
+    print(row2)
+
+"""列表推导式：[表达式 for target1 in iterable1 if condition1 for target2 in iterable2 if condition2...]"""
+def func6():
+    #[(0, 1), (0, 3), (2, 1), (2, 3), (4, 1), (4, 3), (6, 1), (6, 3), (8, 1), (8, 3)]
+    mul_ans = [(x, y) for x in range(10) if x%2==0
+               for y in range(5) if y%2!=0]
+    print(mul_ans)
 
 def main():
-    func_copy()
+    func6()
+    #func5()
+    #func4()
+    #func3()
+    #func_copy()
     #func2()
     #func_is()
     #list_add_and_mul()
