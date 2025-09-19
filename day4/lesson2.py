@@ -153,7 +153,8 @@ def func6():
     a = {x:y for x in [1, 3, 5] for y in [2, 4, 6]}
     print(a)#{1: 6, 3: 6, 5: 6}键值覆盖到最新的
 
-
+def func7():
+    a = [1, 2, 3, 4, 5]
 
 
 
