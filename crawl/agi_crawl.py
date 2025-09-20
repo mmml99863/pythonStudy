@@ -21,8 +21,6 @@ def info_store(plant_varieties):
 
         #将数据写入文件
 
-
-
 if __name__ == '__main__':
     bw = webdriver.Chrome()
     bw.maximize_window()
