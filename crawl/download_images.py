@@ -33,9 +33,9 @@ def guess_ext_from_url_and_headers(url: str, content_type: str | None) -> str:
     return '.jpg'
 
 
-def download_images_from_csv(csv_path: str = 'animals/cat_dog.csv', out_dir: str = 'animals/images'):
+def download_images_from_csv(csv_path: str = 'animals/cat_dog.csv', out_dir: str = 'animals/train'):
     """按“类别+i”命名从 CSV 批量下载图片。CSV 需为两列：uri,animal_type。
-    保存目录默认为 animals/images。"""
+    保存目录默认为 animals/train。"""
     ensure_dir(out_dir)
 
     # 读取 CSV
@@ -66,7 +66,7 @@ def download_images_from_csv(csv_path: str = 'animals/cat_dog.csv', out_dir: str
             url = 'https:' + url
 
         # 递增序号
-        key = animal or '未知类别'
+        key = animal or 'unknownType'
         counters[key] = counters.get(key, 0) + 1
         idx = counters[key]
 

@@ -132,8 +132,8 @@ def crawl_keyword(driver, keyword: str, start_page: int, page_count: int) -> Lis
 def crawl():
     # 关键词列表（保持不变）
     search_types = [
-        '英短蓝猫', '孟加拉猫', '橘猫', '暹罗猫', '美国短毛猫', '斯芬克斯猫', '缅因猫',
-        '比熊犬', '泰迪犬', '雪纳瑞', '巴哥犬', '博美犬', '哈士奇', '萨摩耶', '边境牧羊犬', '柴犬', '金毛寻回犬'
+        'Siamese Cat', 'Bengal Cat', 'Orange Cat', 'Sphynx Cat', 'Maine Coon',
+        'Schnauzer', 'Pug', 'Pomeranian', 'Siberian Husky', 'Samoyed', 'Border Collie', 'Golden Retriever', 'Labrador Retriever', 'Corgi'
     ]
 
     # 起始页交互，若失败则默认 1
